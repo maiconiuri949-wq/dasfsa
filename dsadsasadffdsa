@@ -1,0 +1,8 @@
+do
+    local ok, info = pcall(debug.getinfo, loadstring)
+    if not ok or info.what ~= "C" then
+        return
+    end
+end
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
